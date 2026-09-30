@@ -1,16 +1,22 @@
 {
   "domain": "ariston",
   "name": "Ariston",
-  "codeowners": ["@fustom"],
+  "codeowners": [
+    "@fustom"
+  ],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/fustom/ariston-remotethermo-home-assistant-v3",
   "homekit": {},
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/fustom/ariston-remotethermo-home-assistant-v3/issues",
-  "loggers": ["ariston"],
-  "requirements": ["ariston==0.19.9"],
+  "loggers": [
+    "ariston"
+  ],
+  "requirements": [
+    "ariston @ https://github.com/gatisvil/python-ariston-api/archive/9eb3323f1e3a341a042b852b40ca2fb44e3a827f.zip"
+  ],
   "ssdp": [],
-  "version": "0.19.9",
+  "version": "0.19.9.1",
   "zeroconf": []
 }
