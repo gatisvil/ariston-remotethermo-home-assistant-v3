@@ -142,6 +142,10 @@ class AristonSensorEntityDescription(
     get_native_unit_of_measurement: Callable[[Any], str] | None = None
     get_last_reset: Callable[[Any], dt.datetime] | None = None
     get_native_value: Callable[[Any], Any]
+    # When set, the real 2 h slot values of this consumption type are written
+    # to the external statistic "ariston:<device>_<slots_statistic_suffix>".
+    slots_consumption_type: ConsumptionType | None = None
+    slots_statistic_suffix: str | None = None
 
 
 @dataclass(kw_only=True, frozen=True)
@@ -401,6 +405,8 @@ ARISTON_SENSOR_TYPES: list[AristonSensorEntityDescription] = [
         coordinator=ENERGY_COORDINATOR,
         get_native_value=lambda entity: entity.device.central_heating_total_energy_consumption,
         get_last_reset=lambda entity: entity.device.consumption_sequence_last_changed_utc,
+        slots_consumption_type=ConsumptionType.CENTRAL_HEATING_TOTAL_ENERGY,
+        slots_statistic_suffix="central_heating_energy",
     ),
     AristonSensorEntityDescription(
         key="Domestic hot water total energy consumption",
@@ -417,6 +423,8 @@ ARISTON_SENSOR_TYPES: list[AristonSensorEntityDescription] = [
         coordinator=ENERGY_COORDINATOR,
         get_native_value=lambda entity: entity.device.domestic_hot_water_total_energy_consumption,
         get_last_reset=lambda entity: entity.device.consumption_sequence_last_changed_utc,
+        slots_consumption_type=ConsumptionType.DOMESTIC_HOT_WATER_TOTAL_ENERGY,
+        slots_statistic_suffix="domestic_hot_water_energy",
     ),
     AristonSensorEntityDescription(
         key="Central heating gas consumption",
